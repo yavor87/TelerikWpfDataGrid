@@ -12,8 +12,8 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <telerik:RadGridView x:Name="grid" ItemsSource="{x:Static local:SampleData.Employees}" ShowGroupPanel="True"
-                             AutoGenerateColumns="False" ShowColumnFooters="False">
+        <telerik:RadGridView x:Name="grid" ItemsSource="{x:Static local:SampleData.Employees}" 
+                             AutoGenerateColumns="False" ShowGroupPanel="False">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding FullName}" Header="Name" />
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Department}" />
