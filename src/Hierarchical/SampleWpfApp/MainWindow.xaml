@@ -1,0 +1,42 @@
+﻿<Window x:Class="SampleWpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SampleWpfApp"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        mc:Ignorable="d"
+        Title="Employees">
+    <Grid>
+        <telerik:RadGridView ItemsSource="{x:Static local:SampleData.Employees}"
+                             IsExpandableBinding="{Binding IsExpandable}"
+                             AutoGenerateColumns="False" ShowColumnFooters="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding FullName}" Header="Name" />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Department}" />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Position}" />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Salary, StringFormat={}{0:C}}" />
+            </telerik:RadGridView.Columns>
+            <telerik:RadGridView.ChildTableDefinitions>
+                <telerik:GridViewTableDefinition>
+                    <telerik:GridViewTableDefinition.Relation>
+                        <telerik:PropertyRelation ParentPropertyName="ResponsibleFor" />
+                    </telerik:GridViewTableDefinition.Relation>
+                </telerik:GridViewTableDefinition>
+            </telerik:RadGridView.ChildTableDefinitions>
+            <telerik:RadGridView.HierarchyChildTemplate>
+                <DataTemplate>
+                    <telerik:RadGridView ItemsSource="{Binding ResponsibleFor}" ShowGroupPanel="False"
+                             AutoGenerateColumns="False" ShowColumnFooters="False" Margin="10">
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding FullName}" Header="Name" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Department}" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Position}" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Salary, StringFormat={}{0:C}}" />
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                </DataTemplate>
+            </telerik:RadGridView.HierarchyChildTemplate>
+        </telerik:RadGridView>
+    </Grid>
+</Window>
