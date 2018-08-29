@@ -11,7 +11,8 @@
         <telerik:RadGridView ItemsSource="{x:Static local:SampleData.Employees}" ShowGroupPanel="True"
                              AutoGenerateColumns="False" ShowColumnFooters="False">
             <telerik:RadGridView.Columns>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding FullName}" Header="Name" />
+                <!--<telerik:GridViewDataColumn DataMemberBinding="{Binding FullName}" Header="Name" />-->
+                <telerik:GridViewExpressionColumn Expression="{x:Static local:Employee.FullNameExpression}" Header="Name" IsReadOnly="False" />
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Department}" />
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Position}" />
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Salary, StringFormat={}{0:C}}">

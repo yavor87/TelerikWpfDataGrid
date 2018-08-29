@@ -1,4 +1,7 @@
-﻿namespace SampleWpfApp
+﻿using System;
+using System.Linq.Expressions;
+
+namespace SampleWpfApp
 {
     public class Employee
     {
@@ -13,6 +16,15 @@
         public string Position { get; set; }
 
         public string FullName => $"{FirstName} {LastName}";
+
+        public static Expression FullNameExpression
+        {
+            get
+            {
+                Expression<Func<Employee, string>> expression = empl => $"{empl.FirstName} {empl.LastName}";
+                return expression;
+            }
+        }
     }
 
     public class SampleData
