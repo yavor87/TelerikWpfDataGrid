@@ -1,0 +1,30 @@
+﻿<Window x:Class="DataManipulations.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:DataManipulations.ViewModels"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:local="clr-namespace:DataManipulations"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <telerik:RadGridView ItemsSource="{Binding Data, Mode=OneWay}" />
+        <StackPanel Orientation="Vertical" Grid.Column="1" Width="100">
+            <Button Content="Add new item" Command="{Binding AddNewItemCommand}" Margin="3" />
+            <Button Content="Remove last item" Command="{Binding RemoveLastItemCommand}" Margin="3" />
+            <Button Content="Sort data" Command="{Binding SortDataCommand}" Margin="3" />
+            <Button Content="Filter data" Command="{Binding FilterDataCommand}" Margin="3" />
+            <Button Content="Group data" Command="{Binding GroupDataCommand}" Margin="3" />
+        </StackPanel>
+    </Grid>
+</Window>
