@@ -1,6 +1,6 @@
 ﻿using DatabaseApp.Model;
 using DatabaseApp.Services;
-using System.Threading.Tasks;
+using System.Linq;
 using Telerik.Windows.Controls;
 
 namespace DatabaseApp.ViewModels
@@ -10,8 +10,7 @@ namespace DatabaseApp.ViewModels
         public MainViewModel(IEmployeeService employeeService)
         {
             _employeeService = employeeService;
-            _employeeService.GetEmployeesAsync()
-                .ContinueWith(antc => Employees = antc.Result, TaskScheduler.FromCurrentSynchronizationContext());
+            this.Employees = _employeeService.GetEmployees();
         }
 
         public MainViewModel()
@@ -19,9 +18,9 @@ namespace DatabaseApp.ViewModels
         { }
 
         private IEmployeeService _employeeService;
-        private Employee[] employees;
+        private IQueryable<Employee> employees;
 
-        public Employee[] Employees
+        public IQueryable<Employee> Employees
         {
             get => this.employees;
             private set

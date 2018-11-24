@@ -1,14 +1,14 @@
-﻿using DatabaseApp.Data;
+﻿using AutoMapper.QueryableExtensions;
+using DatabaseApp.Data;
 using DatabaseApp.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DatabaseApp.Services
 {
     public interface IEmployeeService
     {
-        Task<Employee[]> GetEmployeesAsync();
+        IQueryable<Employee> GetEmployees();
     }
 
     public class EmployeeService : IEmployeeService
@@ -21,10 +21,9 @@ namespace DatabaseApp.Services
 
         private EmployeeContext _context;
 
-        public Task<Employee[]> GetEmployeesAsync()
+        public IQueryable<Employee> GetEmployees()
         {
-            var query = _context.Employees.ToAsyncEnumerable().Select(c => DomainMapper.ToModel(c));
-            return query.ToArray();
+            return _context.Employees.ProjectTo<Model.Employee>();
         }
     }
 }
