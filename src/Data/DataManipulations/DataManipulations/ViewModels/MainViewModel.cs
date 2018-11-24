@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Windows.Input;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
@@ -12,6 +13,7 @@ namespace DataManipulations.ViewModels
         {
             _data = new ObservableCollection<Employee>(SampleData.Employees);
             _dataView = new QueryableCollectionView(_data);
+            _dataView.GroupDescriptors.CollectionChanged += OnGroupDescriptorsChanged;
 
             AddNewItemCommand = new DelegateCommand(OnAddNewItem);
             RemoveLastItemCommand = new DelegateCommand(OnRemoveLastItem);
@@ -78,6 +80,11 @@ namespace DataManipulations.ViewModels
             {
                 _dataView.GroupDescriptors.Add(new GroupDescriptor() { Member = nameof(Employee.Department) });
             }
+        }
+
+        private void OnGroupDescriptorsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine($"Group descriptor {e.Action}");
         }
     }
 }
