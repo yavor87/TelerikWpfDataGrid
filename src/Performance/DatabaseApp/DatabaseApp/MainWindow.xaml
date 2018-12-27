@@ -11,12 +11,7 @@
         <vm:MainViewModel />
     </Window.DataContext>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <telerik:RadGridView x:Name="grid1" ItemsSource="{Binding Employees, Mode=OneWay}" AutoGenerateColumns="False"
-                             >
+        <telerik:RadGridView ItemsSource="{Binding Employees, Mode=OneWay}" AutoGenerateColumns="False">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding FullName}" IsGroupable="False" />
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Department}" />
