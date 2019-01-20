@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="SampleWpfApp.Views.General"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:local="clr-namespace:SampleWpfApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <telerik:RadGridView ItemsSource="{x:Static local:SampleData.Employees}"
+                             ShowGroupPanel="False" GridLinesVisibility="Vertical"
+                             ShowColumnHeaders="False" ColumnBackground="Bisque"
+                             RowIndicatorVisibility="Collapsed"/>
+    </Grid>
+</UserControl>
